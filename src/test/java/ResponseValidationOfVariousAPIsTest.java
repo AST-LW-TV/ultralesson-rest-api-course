@@ -13,7 +13,7 @@ public class ResponseValidationOfVariousAPIsTest {
         String body="{\n" +
                 "    \"name\":\"James Kane\", \n" +
                 "    \"gender\":\"male\", \n" +
-                "    \"email\":\"jameskane16@gmail.com\", \n" +
+                "    \"email\":\"jameskane17@gmail.com\", \n" +
                 "    \"status\":\"active\"\n" +
                 "}";
         // Act
@@ -21,7 +21,7 @@ public class ResponseValidationOfVariousAPIsTest {
                 .then()
         // Assert
                 .statusCode(201)
-                .body("data.name", Matchers.equalTo("James John"));
+                .body("data.name", Matchers.equalTo("James Kane"));
     }
 
     @Test

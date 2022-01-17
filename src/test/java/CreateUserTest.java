@@ -12,7 +12,7 @@ public class CreateUserTest {
         String body = "{\n" +
                 "    \"name\":\"James John\", \n" +
                 "    \"gender\":\"male\", \n" +
-                "    \"email\":\"jamesjohn16@gmail.com\", \n" +
+                "    \"email\":\"jamesjohn17@gmail.com\", \n" +
                 "    \"status\":\"active\"\n" +
                 "}";
         // Act
@@ -28,7 +28,7 @@ public class CreateUserTest {
         String body = "{\n" +
                 "    \"name\":\"Jessica John\", \n" +
                 "    \"gender\":\"male\", \n" +
-                "    \"email\":\"jessicajohn16@gmail.com\", \n" +
+                "    \"email\":\"jessicajohn17@gmail.com\", \n" +
                 "    \"status\":\"active\"\n" +
                 "}";
         // Act
