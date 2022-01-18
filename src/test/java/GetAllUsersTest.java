@@ -1,7 +1,5 @@
-import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
+import users.UsersClient;
 
 public class GetAllUsersTest {
 
@@ -10,17 +8,11 @@ public class GetAllUsersTest {
         // Arrange
 
         // Act
-        getUsers()
+        new UsersClient().getAllUsers()
                 .then()
-        // Assert
+                // Assert
                 .statusCode(200)
                 .log()
                 .body();
-    }
-
-    private Response getUsers() {
-        return given()
-                .when()
-                .get("https://gorest.co.in/public/v1/users");
     }
 }
