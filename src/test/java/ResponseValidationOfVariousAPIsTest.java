@@ -20,11 +20,13 @@ public class ResponseValidationOfVariousAPIsTest {
     @Test
     public void validateCreateUserAPIResponse() {
         String email = String.format("%s@gmail.com", UUID.randomUUID());
-        String name = "James Kane";
-        String gender = "male";
-        String status = "active";
-
-        CreateUserRequestBody requestBody = new CreateUserRequestBody(name, gender, email, status);
+        CreateUserRequestBody requestBody = CreateUserRequestBody
+                .builder()
+                .name("James Kane")
+                .gender("male")
+                .email(email)
+                .status("active")
+                .build();
 
         // Act
         usersClient.createUser(requestBody)

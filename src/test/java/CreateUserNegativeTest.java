@@ -19,11 +19,13 @@ public class CreateUserNegativeTest {
     @Test
     public void shouldNotCreateNewUserInvalidEmailAddress() {
         String email = String.format("%sgmail.com", UUID.randomUUID());
-        String name = "Jessica Kane";
-        String gender = "female";
-        String status = "active";
-
-        CreateUserRequestBody requestBody = new CreateUserRequestBody(name, gender, email, status);
+        CreateUserRequestBody requestBody = CreateUserRequestBody
+                .builder()
+                .name("Jessica Kane")
+                .gender("female")
+                .email(email)
+                .status("active")
+                .build();
 
         // Act
         usersClient.createUser(requestBody)
