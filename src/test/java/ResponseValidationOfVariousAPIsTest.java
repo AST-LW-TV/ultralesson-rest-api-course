@@ -1,10 +1,10 @@
-import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
 import users.requests.CreateUserRequestBody;
 import users.response.CreateUserResponseBody;
+import users.response.GetAllUsersResponse;
 
 import java.util.UUID;
 
@@ -39,10 +39,10 @@ public class ResponseValidationOfVariousAPIsTest {
     @Test
     public void validateAttributeLimitOfGetAllUsersAPI() {
         // Act
-        usersClient.getAllUsers()
-                .then()
-                // Assert
-                .statusCode(200)
-                .body("meta.pagination.limit", Matchers.equalTo(20));
+        GetAllUsersResponse response = usersClient.getAllUsers();
+        // Assert
+        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getMeta().getPagination().getLimit(),"20");
+
     }
 }
