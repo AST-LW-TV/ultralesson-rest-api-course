@@ -33,8 +33,7 @@ public class ResponseValidationOfVariousAPIsTest {
         // Act
         CreateUserResponseBody response = usersClient.createUser(requestBody);
         // Assert
-        Assert.assertEquals(response.getStatusCode(), 201);
-        Assert.assertEquals(response.getData().getName(), requestBody.getName());
+        response.assertUserResponse(requestBody);
     }
 
     @Test

@@ -31,8 +31,7 @@ public class CreateUserTest {
         // Act
         CreateUserResponseBody response = usersClient.createUser(requestBody);
         // Assert
-        Assert.assertEquals(response.getStatusCode(), 201);
-        Assert.assertEquals(response.getData().getEmail(), requestBody.getEmail());
+        response.assertUserResponse(requestBody);
     }
 
     @Test
@@ -49,7 +48,6 @@ public class CreateUserTest {
         // Act
         CreateUserResponseBody response = usersClient.createUser(requestBody);
         // Assert
-        Assert.assertEquals(response.getStatusCode(), 201);
-        Assert.assertEquals(response.getData().getEmail(), requestBody.getEmail());
+        response.assertUserResponse(requestBody);
     }
 }
