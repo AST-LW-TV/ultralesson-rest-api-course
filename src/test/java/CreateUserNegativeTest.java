@@ -1,4 +1,5 @@
 import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
@@ -28,7 +29,7 @@ public class CreateUserNegativeTest {
                 .build();
 
         // Act
-        usersClient.createUser(requestBody)
+        usersClient.create(requestBody)
                 .then()
                 // Assert
                 .statusCode(422)

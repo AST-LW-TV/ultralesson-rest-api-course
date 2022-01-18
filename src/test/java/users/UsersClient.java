@@ -3,12 +3,20 @@ package users;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import users.requests.CreateUserRequestBody;
+import users.response.CreateUserResponseBody;
 
 import static io.restassured.RestAssured.given;
 
 public class UsersClient {
 
-    public Response createUser(CreateUserRequestBody requestBody) {
+    public CreateUserResponseBody createUser(CreateUserRequestBody requestBody) {
+        Response response = create(requestBody);
+        CreateUserResponseBody createUserResponse = response.as(CreateUserResponseBody.class);
+        createUserResponse.setStatusCode(response.statusCode());
+        return createUserResponse;
+    }
+
+    public Response create(CreateUserRequestBody requestBody) {
         return given()
                 .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)

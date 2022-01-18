@@ -1,8 +1,10 @@
 import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
 import users.requests.CreateUserRequestBody;
+import users.response.CreateUserResponseBody;
 
 import java.util.UUID;
 
@@ -29,11 +31,10 @@ public class ResponseValidationOfVariousAPIsTest {
                 .build();
 
         // Act
-        usersClient.createUser(requestBody)
-                .then()
-                // Assert
-                .statusCode(201)
-                .body("data.name", Matchers.equalTo("James Kane"));
+        CreateUserResponseBody response = usersClient.createUser(requestBody);
+        // Assert
+        Assert.assertEquals(response.getStatusCode(), 201);
+        Assert.assertEquals(response.getData().getName(), requestBody.getName());
     }
 
     @Test

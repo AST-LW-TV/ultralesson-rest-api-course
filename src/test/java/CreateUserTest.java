@@ -1,8 +1,9 @@
-import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
 import users.requests.CreateUserRequestBody;
+import users.response.CreateUserResponseBody;
 
 import java.util.UUID;
 
@@ -27,18 +28,15 @@ public class CreateUserTest {
                 .email(email)
                 .status("active")
                 .build();
-
         // Act
-        usersClient.createUser(requestBody)
-                .then()
-                // Assert
-                .statusCode(201)
-                .body("data.email", Matchers.equalTo(email));
+        CreateUserResponseBody response = usersClient.createUser(requestBody);
+        // Assert
+        Assert.assertEquals(response.getStatusCode(), 201);
+        Assert.assertEquals(response.getData().getEmail(), requestBody.getEmail());
     }
 
     @Test
     public void shouldCreateNewFemaleUser() {
-        // Arrange
         String email = String.format("%s@gmail.com", UUID.randomUUID());
         CreateUserRequestBody requestBody = CreateUserRequestBody
                 .builder()
@@ -49,10 +47,9 @@ public class CreateUserTest {
                 .build();
 
         // Act
-        usersClient.createUser(requestBody)
-                .then()
-                // Assert
-                .statusCode(201)
-                .body("data.email", Matchers.equalTo(email));
+        CreateUserResponseBody response = usersClient.createUser(requestBody);
+        // Assert
+        Assert.assertEquals(response.getStatusCode(), 201);
+        Assert.assertEquals(response.getData().getEmail(), requestBody.getEmail());
     }
 }
