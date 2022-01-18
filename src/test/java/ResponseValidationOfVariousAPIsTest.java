@@ -2,6 +2,7 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
+import users.requests.CreateUserRequestBody;
 
 import java.util.UUID;
 
@@ -19,14 +20,14 @@ public class ResponseValidationOfVariousAPIsTest {
     @Test
     public void validateCreateUserAPIResponse() {
         String email = String.format("%s@gmail.com", UUID.randomUUID());
-        String body = String.format("{\n" +
-                "    \"name\":\"James Kane\", \n" +
-                "    \"gender\":\"male\", \n" +
-                "    \"email\":\"%s\", \n" +
-                "    \"status\":\"active\"\n" +
-                "}", email);
+        String name = "James Kane";
+        String gender = "male";
+        String status = "active";
+
+        CreateUserRequestBody requestBody = new CreateUserRequestBody(name, gender, email, status);
+
         // Act
-        usersClient.createUser(body)
+        usersClient.createUser(requestBody)
                 .then()
                 // Assert
                 .statusCode(201)
